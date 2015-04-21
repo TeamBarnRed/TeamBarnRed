@@ -1,0 +1,5 @@
+/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.ConsoleUI/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.ConsoleUI/bin/Debug/Minesweeper.ConsoleUI.exe.mdb
+/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.ConsoleUI/bin/Debug/Minesweeper.ConsoleUI.exe
+/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.ConsoleUI/obj/Debug/Minesweeper.ConsoleUI.exe
+/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.ConsoleUI/obj/Debug/Minesweeper.ConsoleUI.exe.mdb
