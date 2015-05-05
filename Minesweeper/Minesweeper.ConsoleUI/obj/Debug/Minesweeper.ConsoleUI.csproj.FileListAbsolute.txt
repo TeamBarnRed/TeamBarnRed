@@ -1,0 +1,4 @@
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.exe
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.ConsoleUI.exe
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.ConsoleUI.pdb
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.pdb

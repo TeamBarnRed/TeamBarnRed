@@ -24,6 +24,11 @@ namespace Minesweeper.Core
             }
             set
             {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new System.ArgumentOutOfRangeException("Name of player cannot be null or empty!");
+                }
+
                 this.name = value;
             }
         }
@@ -35,6 +40,11 @@ namespace Minesweeper.Core
             }
             set
             {
+                if (value == null)
+                {
+                    throw new System.ArgumentOutOfRangeException("Name of player cannot be null or empty!");
+                }
+
                 this.score = value;
             }
         }
