@@ -1,0 +1,2 @@
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.Core\obj\Debug\Minesweeper.Core.csprojResolveAssemblyReference.cache
+D:\HWKS\2-0. HQC\teamwork project\TeamBarnRed\Minesweeper\Minesweeper.Core\obj\Debug\Minesweeper.Core.dll
