@@ -166,7 +166,7 @@
             switch (field.Type)
             {
                 case FieldType.Closed:
-                    field.Type = FieldType.Closed;
+                    field.Type = FieldType.Opened;
                     this.openedFieldsCount++;
 
                     if (this.openedFieldsCount + this.minesCount == this.rows * this.columns)

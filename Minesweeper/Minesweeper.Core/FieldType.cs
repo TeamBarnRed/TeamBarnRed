@@ -1,1 +1,4 @@
-public enum FieldType { Closed, Opened, Mine }
+namespace Minesweeper.Core
+{
+    public enum FieldType { Closed, Opened, Mine }
+}
