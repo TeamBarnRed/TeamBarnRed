@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper.Core
 {
-    class Game
+    public static class Game
     {
     }
 }

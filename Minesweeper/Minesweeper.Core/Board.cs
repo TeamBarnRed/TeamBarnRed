@@ -19,28 +19,11 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Board(int rows, int columns, int minesCount)
         {
-            if (rows < 0 || rows > MaxRows)
-            {
-                throw new ArgumentOutOfRangeException("Board rows must be in range 0..." + MaxRows);
-            }
-
-            if (columns < 0 || columns > MaxColumns)
-            {
-                throw new ArgumentOutOfRangeException("Board columns must be in range 0..." + MaxColumns);
-            }
-
-            if (minesCount >= columns * rows || minesCount < 0)
-            {
-                throw new ArgumentOutOfRangeException("Mines count must be positive number and less than the board size!");
-            }
-
-            this.rows = rows;
-            this.columns = columns;
-            this.minesCount = minesCount;
-
+            this.Rows = rows;
+            this.Columns = columns;
+            this.MinesCount = minesCount;
             this.fields = new Field[rows, columns];
             this.InitializeFields();
         }
@@ -62,11 +45,43 @@
         public int Rows
         {
             get { return this.rows; }
+
+            private set
+            {
+                if (value < 0 || value > MaxRows)
+                {
+                    throw new ArgumentOutOfRangeException("Board rows must be in range 0..." + MaxRows);
+                }
+                this.rows = value;
+            }
         }
 
         public int Columns
         {
             get { return this.columns; }
+
+            private set
+            {
+                if (value < 0 || value > MaxColumns)
+                {
+                    throw new ArgumentOutOfRangeException("Board columns must be in range 0..." + MaxColumns);
+                }
+                this.columns = value;
+            }
+        }
+
+        public int MinesCount
+        {
+            get { return this.minesCount; }
+
+            private set
+            {
+                if (value >= columns * rows || value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Mines count must be positive number and less than the board size!");
+                }
+                this.minesCount = value;
+            }
         }
 
         public int OpenedFieldsCount
@@ -145,7 +160,7 @@
 
             if (field != this[field.Row, field.Column])
             {
-                throw new InvalidFieldException(field, "This field does not exists in the board!");
+                throw new InvalidFieldException(field, "This field does not exist in the board!");
             }
 
             switch (field.Type)
