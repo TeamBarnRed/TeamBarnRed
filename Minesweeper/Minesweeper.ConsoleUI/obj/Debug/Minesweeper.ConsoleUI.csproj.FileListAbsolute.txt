@@ -9,3 +9,10 @@ C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.ConsoleUI
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.csprojResolveAssemblyReference.cache
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.Core.dll
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.Core.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.exe
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.ConsoleUI.exe
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.ConsoleUI.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.Core.dll
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\bin\Debug\Minesweeper.Core.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.ConsoleUI\obj\Debug\Minesweeper.ConsoleUI.csprojResolveAssemblyReference.cache

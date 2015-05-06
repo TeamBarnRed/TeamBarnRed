@@ -8,3 +8,7 @@ C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.Core\obj\
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.Core\obj\Debug\Minesweeper.Core.pdb
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.Core\bin\Debug\Minesweeper.Core.dll
 C:\Users\ivzb\Desktop\coding\TeamBarnRed\trunk\Minesweeper\Minesweeper.Core\bin\Debug\Minesweeper.Core.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.Core\obj\Debug\Minesweeper.Core.dll
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.Core\obj\Debug\Minesweeper.Core.pdb
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.Core\bin\Debug\Minesweeper.Core.dll
+D:\Programming\TeamBarnRed\Minesweeper\Minesweeper.Core\bin\Debug\Minesweeper.Core.pdb

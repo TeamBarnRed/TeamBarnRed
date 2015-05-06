@@ -1,47 +1,21 @@
 namespace Minesweeper.Core
 {
-    using System;
-
-    public class Field
+    internal class Field : IField
     {
-        private int value = 0;
-        private FieldStatus status = FieldStatus.Closed;
-
-        public Field()
+        public Field(int value, int row, int col)
         {
-            this.Value = 0;
-            this.Status = FieldStatus.Closed;
+            this.Value = value;
+            this.Row = row;
+            this.Column = col;
+            this.Type = FieldType.Closed;
         }
 
-        public int Value
-        {
-            get
-            {
-                return this.value;
-            }
+        public int Value { get; set; }
 
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Field value cannot be negative number!");
-                }
+        public int Row { get; set; }
 
-                this.value = value;
-            }
-        }
+        public int Column { get; set; }
 
-        public FieldStatus Status
-        {
-            get
-            {
-                return this.status;
-            }
-
-            set
-            {
-                this.status = value;
-            }
-        }
+        public FieldType Type { get; set; }
     }
 }

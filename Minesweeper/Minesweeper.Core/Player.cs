@@ -24,7 +24,7 @@
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentOutOfRangeException("Name of player cannot be null or empty!");
+                    throw new ArgumentNullException("Name of player cannot be null or empty!");
                 }
 
                 this.name = value;
@@ -39,9 +39,9 @@
             }
             set
             {
-                if (value == null)
+                if (value < 0)
                 {
-                    throw new System.ArgumentOutOfRangeException("Name of player cannot be null or empty!");
+                    throw new ArgumentOutOfRangeException("Player score cannot be negative number!");
                 }
 
                 this.score = value;

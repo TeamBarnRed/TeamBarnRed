@@ -1,0 +1,1 @@
+public enum FieldType { Closed, Opened, Mine }
