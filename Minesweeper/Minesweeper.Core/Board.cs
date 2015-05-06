@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using Exceptions;
 
-    public class GameBoard : IEnumerable<IField>
+    public class Board : IEnumerable<IField>
     {
         public const int MaxRows = 100;
         public const int MaxColumns = 100;
@@ -19,7 +19,7 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
-        public GameBoard(int rows, int columns, int minesCount)
+        public Board(int rows, int columns, int minesCount)
         {
             if (rows < 0 || rows > MaxRows)
             {

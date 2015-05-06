@@ -7,11 +7,11 @@
     {
         private static GameEngine gameEngineInstance = null;
 
-        public GameBoard Board { get; private set; }
+        public Board Board { get; private set; }
 
         private GameEngine(int rows, int cols, int minesCount)
         {
-            this.Board = new GameBoard(rows, cols, minesCount);
+            this.Board = new Board(rows, cols, minesCount);
         }
 
         public static GameEngine Instance(int rows, int cols, int minesCount)
