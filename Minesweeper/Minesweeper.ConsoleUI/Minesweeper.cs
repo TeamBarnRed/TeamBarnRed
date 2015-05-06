@@ -1,12 +1,20 @@
 ﻿namespace Minesweeper.ConsoleUI
 {
-	using System;
+    using System;
+
+    using Core;
+    using Core.Constants;
 
 	internal class Minesweeper
 	{
-		public static void Main (string[] args)
+		public static void Main ()
 		{
-			Console.WriteLine ("Hello World!");
+            int rows = GameConstants.FieldRows;
+            int cols = GameConstants.FieldCols;
+            int minesCount = GameConstants.FieldMinesCount;
+
+            GameEngine minesweeperEngine = GameEngine.Instance(rows, cols, minesCount);
+            minesweeperEngine.Run();
 		}
 	}
 }

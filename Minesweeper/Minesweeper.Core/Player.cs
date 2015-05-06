@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minesweeper.Core
+﻿namespace Minesweeper.Core
 {
-    public class Player : System.IComparable<Player>
+    using System;
+
+    public class Player : IComparable<Player>
     {
         private string name;
         private int score;
@@ -16,22 +12,25 @@ namespace Minesweeper.Core
             this.Name = name;
             this.Score = score;
         }
+
         public string Name
         {
             get
             {
                 return this.name;
             }
+
             set
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    throw new System.ArgumentOutOfRangeException("Name of player cannot be null or empty!");
+                    throw new ArgumentOutOfRangeException("Name of player cannot be null or empty!");
                 }
 
                 this.name = value;
             }
         }
+
         public int Score
         {
             get
@@ -53,9 +52,10 @@ namespace Minesweeper.Core
         {
             return this.Score.CompareTo(other.Score);
         }
+
         public override string ToString()
         {
-            return this.name + " --> " + this.score;
+            return this.Name + " --> " + this.Score;
         }
         
     }

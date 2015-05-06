@@ -1,5 +1,7 @@
 namespace Minesweeper.Core
 {
+    using System;
+
     public class Field
     {
         private int value = 0;
@@ -7,23 +9,39 @@ namespace Minesweeper.Core
 
         public Field()
         {
-            this.value = 0;
-            this.status = FieldStatus.Closed;
+            this.Value = 0;
+            this.Status = FieldStatus.Closed;
         }
 
         public int Value
         {
-            get { return this.value; }
+            get
+            {
+                return this.value;
+            }
+
             set
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentOutOfRangeException("Field value cannot be negative number!");
+                    throw new ArgumentOutOfRangeException("Field value cannot be negative number!");
                 }
+
                 this.value = value;
             }
         }
 
-        public FieldStatus { get; set; }
+        public FieldStatus Status
+        {
+            get
+            {
+                return this.status;
+            }
+
+            set
+            {
+                this.status = value;
+            }
+        }
     }
 }
