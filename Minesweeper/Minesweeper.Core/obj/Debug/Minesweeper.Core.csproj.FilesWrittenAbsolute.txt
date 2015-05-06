@@ -1,5 +1,0 @@
-/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.Core/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.Core/bin/Debug/Minesweeper.Core.dll.mdb
-/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.Core/bin/Debug/Minesweeper.Core.dll
-/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.Core/obj/Debug/Minesweeper.Core.dll
-/home/alex/Programming/TeamBarnRed/Minesweeper/Minesweeper.Core/obj/Debug/Minesweeper.Core.dll.mdb
