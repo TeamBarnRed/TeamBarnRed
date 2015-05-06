@@ -220,7 +220,7 @@
 
         private void SetFieldValue(IField field)
         {
-            int value = 0;
+            field.Value = 0;
 
             for (int row = field.Row - 1; row <= field.Row + 1; row++)
             {
@@ -231,19 +231,13 @@
 
                 for (int col = field.Column - 1; col <= field.Column + 1; col++)
                 {
-                    if (col < 0 || col >= this.columns)
+                    if (col > 0 && col < this.columns &&
+                        this[row, col].Type == FieldType.Mine)
                     {
-                        continue;
-                    }
-
-                    if (this[row, col].Type == FieldType.Mine)
-                    {
-                        value++;
+                        field.Value++;
                     }
                 }
             }
-
-            field.Value = value;
         }
 
         private void InitializeEmptyFields()
