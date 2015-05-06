@@ -15,7 +15,7 @@
             //minesweeperEngine.Run();
 
             // Test board
-            var board = new GameBoard(5, 10, 49);
+            var board = new Board(5, 10, 49);
             Console.WriteLine(board.ToString());
             Console.ReadLine();
 		}
