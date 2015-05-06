@@ -110,40 +110,6 @@
             }
         }
 
-        public override string ToString()
-        {
-            var sb = new System.Text.StringBuilder();
-
-            // Append header
-            sb.Append("   ");
-            for (int i = 0; i < columns; i++)
-            {
-                sb.AppendFormat(" {0}", i);
-            }
-            sb.AppendLine(" ");
-
-            // Append rows
-            sb.Append("   ");
-            sb.Append('-', columns * 2 + 1);
-            sb.AppendLine(" ");
-            for (int i = 0; i < rows; i++)
-            {
-                sb.AppendFormat("{0} |", i);
-                for (int j = 0; j < columns; j++)
-                {
-                    sb.AppendFormat(" {0}", this[i, j].Value);
-                }
-                sb.AppendLine(" |");
-            }
-
-            //generates -----------------
-            sb.Append("   ");
-            sb.Append('-', columns * 2 + 1);
-            sb.AppendLine(" ");
-
-            return sb.ToString();
-        }
-
         /// <summary>
         /// Opens the selected field
         /// </summary>
@@ -155,7 +121,7 @@
         {
             if (!canMove)
             {
-                throw new InvalidOperationException("This board is already solved or player stepped on mine! Please reinit first!");
+                throw new InvalidOperationException("This board is already solved or player stepped on mine! Please restart first!");
             }
 
             if (field != this[field.Row, field.Column])

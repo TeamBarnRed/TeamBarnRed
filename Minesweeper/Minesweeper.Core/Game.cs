@@ -8,19 +8,32 @@ namespace Minesweeper.Core
 {
     public static class Game
     {
-        private const int maxRows = 5;
-        private const int maxColumns = 10;
-        private const int maxMines = 15;
-        private const int maxTopPlayers = 5;
+        public const int maxRows = 5;
+        public const int maxColumns = 10;
+        public const int maxMines = 15;
+        public const int maxTopPlayers = 5;
 
         private static Board board;
+        private static int score;
         private static List<Player> topPlayers;
 
-        private static void InitializeGameBoard()
+        public static void Run()
         {
             board = new Board(maxRows, maxColumns, maxMines);
-
+            score = 0;
         }
+
+        public static Board GetBoard()
+        {
+            return board;
+        }
+
+        public static void OpenField(int row, int column)
+        {
+            board.OpenField(board[row, column]);
+        }
+
+        /*
         private static void InitializeTopPlayers()
         {
             topPlayers = new List<Player>();
@@ -177,11 +190,6 @@ namespace Minesweeper.Core
                     throw new Exception("An error has occured");
                 }
             }
-        }
-
-        static void Main(string[] args)
-        {
-            Menu();
-        }
+        }*/
     }
 }
