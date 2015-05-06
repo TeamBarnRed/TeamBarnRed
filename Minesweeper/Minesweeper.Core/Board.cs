@@ -19,6 +19,7 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Board(int rows, int columns, int minesCount)
         {
             if (rows < 0 || rows > MaxRows)
@@ -132,6 +133,9 @@
         /// Opens the selected field
         /// </summary>
         /// <param name="field">The field to be opened</param>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="InvalidFieldException"></exception>
+        /// <exception cref="IllegalMoveException"></exception>
         public void OpenField(IField field)
         {
             if (!canMove)
