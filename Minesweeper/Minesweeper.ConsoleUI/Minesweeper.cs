@@ -25,20 +25,27 @@
 
 
             Game.Run();
-            string currentBoard = PrintBoard(Game.GetBoard(), Game.maxRows, Game.maxColumns);
+            string currentBoard = PrintBoard(Game.Board);
 
-            Game.GetBoard().OnSteppedOnMine += (field) =>
+            Game.Board.OnSuccessfullyOpenedField += (field) =>
             {
+                RedrawGameUI(Game.Board);
+            };
+
+            Game.Board.OnSteppedOnMine += (field) =>
+            {
+                RedrawGameUI(Game.Board);
                 Console.WriteLine("Game over! You stepped on a mine.");
             };
 
-            Game.GetBoard().OnBoardSolved += () =>
+            Game.Board.OnBoardSolved += () =>
             {
+                RedrawGameUI(Game.Board);
                 Console.WriteLine("You won! Congratulations!");
             };
 
             bool readCommand = true;
-            DrawGameUI(Game.GetBoard());
+            RedrawGameUI(Game.Board);
 
             do
             {
@@ -54,6 +61,7 @@
 
                             break;
                         case "restart":
+                            Game.Run();
                             // todo
                             break;
                         case "top":
@@ -65,9 +73,6 @@
                             int argumentColumn = int.Parse(commandArguments[1]);
 
                             Game.OpenField(argumentColumn, argumentRow);
-
-                            ClearGameUI();
-                            DrawGameUI(Game.GetBoard());
 
                             break;
                     }
@@ -96,19 +101,16 @@
             while (readCommand);
 		}
 
-        private static void DrawGameUI(Board board)
+        private static void RedrawGameUI(Board board)
         {
+            Console.Clear();
+
             Console.WriteLine("Welcome to the game “Minesweeper”. " +
                 "Try to reveal all cells without mines. " +
                 "Use 'top' to view the scoreboard, 'restart' to start a new game" +
                 "and 'exit' to quit the game.");
-            Console.WriteLine(PrintBoard(board, board.Rows, board.Columns));
+            Console.WriteLine(PrintBoard(board));
             Console.WriteLine("Enter command:");
-        }
-
-        private static void ClearGameUI()
-        {
-            Console.Clear();
         }
 
         private static void ExitGame()
@@ -116,13 +118,13 @@
             Console.WriteLine("Good bye!");
         }
 
-        private static string PrintBoard(Board board, int rows, int columns)
+        private static string PrintBoard(Board board)
         {
             var sb = new System.Text.StringBuilder();
 
             // Append header
             sb.Append("   ");
-            for (int i = 0; i < columns; i++)
+            for (int i = 0; i < board.Columns; i++)
             {
                 sb.AppendFormat(" {0}", i);
             }
@@ -130,12 +132,12 @@
 
             // Append rows
             sb.Append("   ");
-            sb.Append('-', columns * 2 + 1);
+            sb.Append('-', board.Columns * 2 + 1);
             sb.AppendLine(" ");
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < board.Rows; i++)
             {
                 sb.AppendFormat("{0} |", i);
-                for (int j = 0; j < columns; j++)
+                for (int j = 0; j < board.Columns; j++)
                 {
                     var fieldContent = "";
 
@@ -155,7 +157,7 @@
 
             //generates -----------------
             sb.Append("   ");
-            sb.Append('-', columns * 2 + 1);
+            sb.Append('-', board.Columns * 2 + 1);
             sb.AppendLine(" ");
 
             return sb.ToString();

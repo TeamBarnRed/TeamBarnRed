@@ -23,9 +23,17 @@ namespace Minesweeper.Core
             score = 0;
         }
 
-        public static Board GetBoard()
+        public static Board Board
         {
-            return board;
+            get
+            {
+                return board;
+            }
+
+            private set
+            {
+                board = value;
+            }
         }
 
         public static void OpenField(int row, int column)

@@ -28,9 +28,16 @@
             this.InitializeFields();
         }
 
+        public delegate void SuccessfullyOpenedField(IField field);
+
         public delegate void SteppedOnMine(IField field);
 
         public delegate void BoardSolved();
+
+        /// <summary>
+        /// The event is fired when the player successfully opens field
+        /// </summary>
+        public event SuccessfullyOpenedField OnSuccessfullyOpenedField;
 
         /// <summary>
         /// The event is fired when the player steps on mine
@@ -140,6 +147,8 @@
                         OnBoardSolved();
                         this.canMove = false;
                     }
+                    OnSuccessfullyOpenedField(field);
+
                     break;
                 case FieldType.Opened:
                     throw new IllegalMoveException(field, "The selected field is already opened!");
