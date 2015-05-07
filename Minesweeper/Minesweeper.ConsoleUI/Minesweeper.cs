@@ -30,6 +30,7 @@
                 switch (command)
                 {
                     case "restart":
+                        isGameOver = false;
                         Game.Start(RowsCount, ColsCount, MinesCount);
                         break;
                     case "top":
