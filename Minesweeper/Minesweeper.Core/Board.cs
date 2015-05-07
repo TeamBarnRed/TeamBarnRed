@@ -19,7 +19,7 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
-        internal Board(int rows, int columns, int minesCount)
+        public Board(int rows, int columns, int minesCount)
         {
             this.Rows = rows;
             this.Columns = columns;
@@ -149,6 +149,7 @@
                 case FieldType.Mine:
                     OnSteppedOnMine(field);
                     this.canMove = false;
+
                     break;
             }
         }

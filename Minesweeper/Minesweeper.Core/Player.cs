@@ -4,7 +4,7 @@
 
     public class Player : IComparable<Player>
     {
-        private string name = "NoName";
+        private string name = "";
         private int score = 0;
 
         public Player(string name)
