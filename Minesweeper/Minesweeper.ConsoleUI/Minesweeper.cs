@@ -3,6 +3,9 @@
     using System;
     using Core;
 
+    /// <summary>
+    /// Class hoding the console UI game
+    /// </summary>
     internal class Minesweeper
     {
         private const string ExitCommand = "exit";
@@ -10,6 +13,9 @@
         private const int ColsCount = 10;
         private const int MinesCount = 10;
 
+        /// <summary>
+        /// Console UI game main method.
+        /// </summary>
         public static void Main()
         {
             Game.OnGameOver += OnGameOver;
