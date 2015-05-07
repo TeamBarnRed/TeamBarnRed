@@ -91,17 +91,5 @@
             board.OpenField(1, 1);
             board.OpenField(1, 1);
         }
-        /*
-        [TestMethod]
-        public void PlayerToStringTest()
-        {
-            Player player = new Player("Pesho");
-            player.Score = 15;
-
-            string resultOutput = player.ToString();
-            string expectedOutput = string.Format("{0} --> {1}", player.Name, player.Score);
-
-            Assert.AreEqual(resultOutput, expectedOutput);
-        }*/
     }
 }
