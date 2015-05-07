@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Player : IComparable<Player>
+    public class Player : IComparable<IPlayer>, IPlayer
     {
         private string name = "NoName";
         private int score = 0;
@@ -47,7 +47,7 @@
             }
         }
 
-        public int CompareTo(Player other)
+        public int CompareTo(IPlayer other)
         {
             return this.Score.CompareTo(other.Score);
         }

@@ -39,6 +39,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameOverEventArgs.cs" />
     <Compile Include="IField.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
