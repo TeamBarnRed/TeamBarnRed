@@ -12,6 +12,8 @@
         private const int RowsCount = 10;
         private const int ColsCount = 10;
         private const int MinesCount = 10;
+        private static Exception gameException = null;
+        private static bool isGameOver = false;
 
         /// <summary>
         /// Console UI game main method.
@@ -41,7 +43,7 @@
                         break;
                 }
 
-                PrintBoard();
+                PrintBoard(isGameOver);
                 Console.Write(Environment.NewLine + "Enter command: ");
                 command = Console.ReadLine();
             }
@@ -66,15 +68,20 @@
             }
             catch (FormatException)
             {
-                Console.WriteLine("Invalid coordinates! Enter numbers separated with space!");
+                gameException = new FormatException("Invalid coordinates! Enter numbers separated with space!");
             }
             catch (InvalidOperationException)
             {
-                Console.WriteLine("Game is over! Please type \"restart\" command to start a new game!");
+                gameException = new InvalidOperationException("Game is over! Please type \"restart\" command to start a new game!");
             }
-            catch (Exception ex)
+            catch (IndexOutOfRangeException)
             {
-                Console.WriteLine(ex.Message);
+                gameException = new IndexOutOfRangeException("Invalid coordinates! Enter numbers separated with space!");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                gameException = exception;
             }
         }
 
@@ -82,17 +89,17 @@
         {
             if (args.IsWon)
             {
-                Console.WriteLine("Congratulations! You successfully solved the game!");
-
+                gameException = new ApplicationException("Congratulations! You successfully solved the game!");
             }
             else
             {
-                Console.WriteLine("Game over! You stepped on mine!");
+                gameException = new ApplicationException("Game over! You stepped on mine!");
             }
-            Console.WriteLine("Type \"restart\" to restart the game!");
+
+            isGameOver = true;
         }
 
-        private static void PrintBoard()
+        private static void PrintBoard(bool revealBoard = false)
         {
             Console.Clear();
             Console.WriteLine("Welcome to the game “Minesweeper”. " +
@@ -121,11 +128,21 @@
 
                     if (Game.Board[i, j].Type != FieldType.Opened)
                     {
-                        fieldContent = "?";
+                        fieldContent = " ";
+
+                        if (revealBoard)
+                        {
+                            fieldContent = Game.Board[i, j].Value.ToString();
+                        }
                     }
                     else
                     {
                         fieldContent = Game.Board[i, j].Value.ToString();
+
+                        if (revealBoard)
+                        {
+                            fieldContent = "*";
+                        }
                     }
 
                     Console.Write(" {0}", fieldContent);
@@ -137,6 +154,12 @@
             Console.Write("   ");
             Console.Write(new string('-', Game.Board.Columns * 2 + 1));
             Console.WriteLine(" ");
+
+            // Print game exception if has
+            if (gameException != null) {
+                Console.WriteLine(gameException.Message);
+                gameException = null;
+            }
         }
     }
 }
