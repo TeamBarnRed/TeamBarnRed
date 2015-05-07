@@ -2,16 +2,16 @@
 {
     using System;
     using Core;
-    
+
     internal class Minesweeper
-	{
+    {
         private const string ExitCommand = "exit";
         private const int RowsCount = 10;
         private const int ColsCount = 10;
         private const int MinesCount = 10;
 
-		public static void Main()
-		{
+        public static void Main()
+        {
             Game.OnGameOver += OnGameOver;
             Game.Start(RowsCount, ColsCount, MinesCount);
 
@@ -42,7 +42,7 @@
 
             Console.WriteLine("Good bye!");
             Console.ReadKey();
-		}
+        }
 
         private static void PrintScoreBoard()
         {
@@ -77,7 +77,7 @@
             if (args.IsWon)
             {
                 Console.WriteLine("Congratulations! You successfully solved the game!");
-                
+
             }
             else
             {
@@ -132,5 +132,5 @@
             Console.Write(new string('-', Game.Board.Columns * 2 + 1));
             Console.WriteLine(" ");
         }
-	}
+    }
 }
