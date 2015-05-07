@@ -94,16 +94,16 @@
             if (args.IsWon)
             {
                 gameException = new ApplicationException("Congratulations! You successfully solved the game!");
-
-                Console.WriteLine("Your name: ");
-                string name = Console.ReadLine();
-                var player = new Player(name, args.Score);
-                Game.AddPlayerToScoreBoard(player);
             }
             else
             {
                 gameException = new ApplicationException("Game over! You stepped on mine!");
             }
+
+            Console.WriteLine("Your name: ");
+            string name = Console.ReadLine();
+            var player = new Player(name, args.Score);
+            Game.AddPlayerToScoreBoard(player);
 
             isGameOver = true;
         }
