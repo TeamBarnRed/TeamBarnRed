@@ -2,11 +2,18 @@
 {
     using System;
 
-    public class Player : IComparable<IPlayer>, IPlayer
+    /// <summary>
+    /// Class hoding the game player
+    /// </summary>
+    public class Player : IComparable<Player>
     {
-        private string name = "NoName";
+        private string name = "";
         private int score = 0;
 
+        /// <summary>
+        /// Player constructor method.
+        /// </summary>
+        /// <param name="name">The player name.</param>
         public Player(string name)
         {
             this.Name = name;
@@ -47,11 +54,18 @@
             }
         }
 
-        public int CompareTo(IPlayer other)
+        /// <summary>
+        /// Compare player to other player by score.
+        /// </summary>
+        /// <param name="player">Other player object.</param>
+        public int CompareTo(Player other)
         {
             return this.Score.CompareTo(other.Score);
         }
 
+        /// <summary>
+        /// Print player
+        /// </summary>
         public override string ToString()
         {
             return this.Name + " --> " + this.Score;

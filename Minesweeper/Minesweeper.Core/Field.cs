@@ -1,12 +1,21 @@
 namespace Minesweeper.Core
 {
+    /// <summary>
+    /// Class hoding the game board fields
+    /// </summary>
     public class Field : IField
     {
-        internal Field(int value, int row, int col)
+        /// <summary>
+        /// Field constructor method.
+        /// </summary>
+        /// <param name="value">The field character.</param>
+        /// <param name="row">The field row in the game board.</param>
+        /// <param name="column">The field column in the game board.</param>
+        internal Field(int value, int row, int column)
         {
             this.Value = value;
             this.Row = row;
-            this.Column = col;
+            this.Column = column;
             this.Type = FieldType.Closed;
         }
 

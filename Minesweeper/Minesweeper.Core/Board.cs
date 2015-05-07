@@ -6,6 +6,9 @@
     using System.Collections.Generic;
     using Exceptions;
 
+    /// <summary>
+    /// Class containing the game board
+    /// </summary>
     public class Board : IEnumerable<IField>
     {
         public const int MaxRows = 100;
@@ -19,7 +22,13 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
-        internal Board(int rows, int columns, int minesCount)
+        /// <summary>
+        /// Board constructor method.
+        /// </summary>
+        /// <param name="rows">The amount of rows on the game board.</param>
+        /// <param name="columns">The amount of columns on the game board.</param>
+        /// <param name="minesCount">The amount of mines on the game board.</param>
+        public Board(int rows, int columns, int minesCount)
         {
             this.Rows = rows;
             this.Columns = columns;
@@ -149,6 +158,7 @@
                 case FieldType.Mine:
                     OnSteppedOnMine(field);
                     this.canMove = false;
+
                     break;
             }
         }
