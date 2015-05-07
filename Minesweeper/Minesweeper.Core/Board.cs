@@ -19,7 +19,7 @@
         private IField[,] fields = null;
         private Random random = new Random();
 
-        public Board(int rows, int columns, int minesCount)
+        internal Board(int rows, int columns, int minesCount)
         {
             this.Rows = rows;
             this.Columns = columns;
@@ -28,16 +28,9 @@
             this.InitializeFields();
         }
 
-        public delegate void SuccessfullyOpenedField(IField field);
-
         public delegate void SteppedOnMine(IField field);
 
         public delegate void BoardSolved();
-
-        /// <summary>
-        /// The event is fired when the player successfully opens field
-        /// </summary>
-        public event SuccessfullyOpenedField OnSuccessfullyOpenedField;
 
         /// <summary>
         /// The event is fired when the player steps on mine
@@ -124,8 +117,10 @@
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="InvalidFieldException"></exception>
         /// <exception cref="IllegalMoveException"></exception>
-        public void OpenField(IField field)
+        public void OpenField(int row, int col)
         {
+            var field = (Field)this[row, col];
+
             if (!canMove)
             {
                 throw new InvalidOperationException("This board is already solved or player stepped on mine! Please restart first!");
@@ -147,7 +142,6 @@
                         OnBoardSolved();
                         this.canMove = false;
                     }
-                    OnSuccessfullyOpenedField(field);
 
                     break;
                 case FieldType.Opened:
@@ -187,13 +181,13 @@
                     continue;
                 }
 
-                this.fields[row, column].Type = FieldType.Mine;
+                ((Field)this.fields[row, column]).Type = FieldType.Mine;
                 insertedMinesCount++;
             }
             while (insertedMinesCount < this.minesCount);
         }
 
-        private void SetFieldValue(IField field)
+        private void SetFieldValue(Field field)
         {
             field.Value = 0;
 
@@ -223,7 +217,7 @@
 
             foreach (var field in emptyFields)
             {
-                SetFieldValue(field);
+                SetFieldValue((Field)field);
             }
         }
 

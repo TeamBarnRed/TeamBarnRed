@@ -32,15 +32,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="Constants\GameConstants.cs" />
     <Compile Include="Exceptions\IllegalMoveException.cs" />
     <Compile Include="Exceptions\InvalidFieldException.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameEngine.cs" />
+    <Compile Include="GameOverEventArgs.cs" />
     <Compile Include="IField.cs" />
-    <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

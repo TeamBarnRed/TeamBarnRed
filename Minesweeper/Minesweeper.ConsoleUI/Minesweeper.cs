@@ -1,166 +1,136 @@
 ﻿namespace Minesweeper.ConsoleUI
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Core;
-    using Core.Exceptions;
     
     internal class Minesweeper
 	{
-		public static void Main ()
+        private const string ExitCommand = "exit";
+        private const int RowsCount = 10;
+        private const int ColsCount = 10;
+        private const int MinesCount = 10;
+
+		public static void Main()
 		{
-            //int rows = GameConstants.FieldRows;
-            //int cols = GameConstants.FieldCols;
-            //int minesCount = GameConstants.FieldMinesCount;
-            //
-            //GameEngine minesweeperEngine = GameEngine.Instance(rows, cols, minesCount);
-            //minesweeperEngine.Run();
+            Game.OnGameOver += OnGameOver;
+            Game.Start(RowsCount, ColsCount, MinesCount);
 
-            // Test board
-            /*var board = new Board(5, 10, 49);
-            Console.WriteLine(board.ToString());
-            Console.ReadLine();*/
+            string command = string.Empty;
 
-
-            Game.Run();
-            string currentBoard = PrintBoard(Game.Board);
-
-            Game.Board.OnSuccessfullyOpenedField += (field) =>
+            while (command != ExitCommand)
             {
-                RedrawGameUI(Game.Board);
-            };
-
-            Game.Board.OnSteppedOnMine += (field) =>
-            {
-                RedrawGameUI(Game.Board);
-                Console.WriteLine("Game over! You stepped on a mine.");
-            };
-
-            Game.Board.OnBoardSolved += () =>
-            {
-                RedrawGameUI(Game.Board);
-                Console.WriteLine("You won! Congratulations!");
-            };
-
-            bool readCommand = true;
-            RedrawGameUI(Game.Board);
-
-            do
-            {
-                string currentCommand = Console.ReadLine();
-
-                try
+                switch (command)
                 {
-                    switch (currentCommand)
-                    {
-                        case "exit":
-                            readCommand = false;
-                            ExitGame();
+                    case "restart":
+                        Game.Start(RowsCount, ColsCount, MinesCount);
+                        break;
+                    case "top":
+                        PrintScoreBoard();
+                        break;
+                    default:
+                        if (!string.IsNullOrEmpty(command))
+                        {
+                            ProcessCoordinates(command);
+                        }
+                        break;
+                }
 
-                            break;
-                        case "restart":
-                            Game.Run();
-                            // todo
-                            break;
-                        case "top":
-                            // todo
-                            break;
-                        default:
-                            string[] commandArguments = currentCommand.Split(' ');
-                            int argumentRow = int.Parse(commandArguments[0]);
-                            int argumentColumn = int.Parse(commandArguments[1]);
-
-                            Game.OpenField(argumentColumn, argumentRow);
-
-                            break;
-                    }
-                }
-                catch (FormatException exc)
-                {
-                    Console.WriteLine("Invalid value for row and/or column.");
-                }
-                catch (IndexOutOfRangeException exc)
-                {
-                    Console.WriteLine("Invalid value for row and/or column.");
-                }
-                catch (InvalidFieldException exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
-                catch (IllegalMoveException exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
-                catch (InvalidOperationException exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
+                PrintBoard();
+                Console.Write(Environment.NewLine + "Enter command: ");
+                command = Console.ReadLine();
             }
-            while (readCommand);
+
+            Console.WriteLine("Good bye!");
+            Console.ReadKey();
 		}
 
-        private static void RedrawGameUI(Board board)
+        private static void PrintScoreBoard()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ProcessCoordinates(string coordinates)
+        {
+            string[] coordinatesAsArray = coordinates.Split(' ');
+            try
+            {
+                int row = int.Parse(coordinatesAsArray[0]);
+                int col = int.Parse(coordinatesAsArray[1]);
+                Game.Board.OpenField(row, col);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid coordinates! Enter numbers separated with space!");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Game is over! Please type \"restart\" command to start a new game!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private static void OnGameOver(GameOverEventArgs args)
+        {
+            if (args.IsWon)
+            {
+                Console.WriteLine("Congratulations! You successfully solved the game!");
+                
+            }
+            else
+            {
+                Console.WriteLine("Game over! You stepped on mine!");
+            }
+            Console.WriteLine("Type \"restart\" to restart the game!");
+        }
+
+        private static void PrintBoard()
         {
             Console.Clear();
-
             Console.WriteLine("Welcome to the game “Minesweeper”. " +
                 "Try to reveal all cells without mines. " +
                 "Use 'top' to view the scoreboard, 'restart' to start a new game" +
                 "and 'exit' to quit the game.");
-            Console.WriteLine(PrintBoard(board));
-            Console.WriteLine("Enter command:");
-        }
 
-        private static void ExitGame()
-        {
-            Console.WriteLine("Good bye!");
-        }
-
-        private static string PrintBoard(Board board)
-        {
-            var sb = new System.Text.StringBuilder();
-
-            // Append header
-            sb.Append("   ");
-            for (int i = 0; i < board.Columns; i++)
+            // Print header
+            Console.Write("   ");
+            for (int i = 0; i < Game.Board.Columns; i++)
             {
-                sb.AppendFormat(" {0}", i);
+                Console.Write(" {0}", i);
             }
-            sb.AppendLine(" ");
+            Console.WriteLine(" ");
 
-            // Append rows
-            sb.Append("   ");
-            sb.Append('-', board.Columns * 2 + 1);
-            sb.AppendLine(" ");
-            for (int i = 0; i < board.Rows; i++)
+            // Print board
+            Console.Write("   ");
+            Console.Write(new string('-', Game.Board.Columns * 2 + 1));
+            Console.WriteLine(" ");
+            for (int i = 0; i < Game.Board.Rows; i++)
             {
-                sb.AppendFormat("{0} |", i);
-                for (int j = 0; j < board.Columns; j++)
+                Console.Write("{0} |", i);
+                for (int j = 0; j < Game.Board.Columns; j++)
                 {
                     var fieldContent = "";
 
-                    if (board[i, j].Type == FieldType.Closed || board[i, j].Type == FieldType.Mine)
+                    if (Game.Board[i, j].Type != FieldType.Opened)
                     {
-                        fieldContent = " ";
+                        fieldContent = "?";
                     }
                     else
                     {
-                        fieldContent = board[i, j].Value.ToString();
+                        fieldContent = Game.Board[i, j].Value.ToString();
                     }
 
-                    sb.AppendFormat(" {0}", fieldContent);
+                    Console.Write(" {0}", fieldContent);
                 }
-                sb.AppendLine(" |");
+                Console.WriteLine(" |");
             }
 
-            //generates -----------------
-            sb.Append("   ");
-            sb.Append('-', board.Columns * 2 + 1);
-            sb.AppendLine(" ");
-
-            return sb.ToString();
+            // Print footer
+            Console.Write("   ");
+            Console.Write(new string('-', Game.Board.Columns * 2 + 1));
+            Console.WriteLine(" ");
         }
 	}
 }

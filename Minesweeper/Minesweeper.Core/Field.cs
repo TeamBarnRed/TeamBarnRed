@@ -1,8 +1,8 @@
 namespace Minesweeper.Core
 {
-    internal class Field : IField
+    public class Field : IField
     {
-        public Field(int value, int row, int col)
+        internal Field(int value, int row, int col)
         {
             this.Value = value;
             this.Row = row;
@@ -10,12 +10,12 @@ namespace Minesweeper.Core
             this.Type = FieldType.Closed;
         }
 
-        public int Value { get; set; }
+        public int Value { get; internal set; }
 
-        public int Row { get; set; }
+        public int Row { get; internal set; }
 
-        public int Column { get; set; }
+        public int Column { get; internal set; }
 
-        public FieldType Type { get; set; }
+        public FieldType Type { get; internal set; }
     }
 }

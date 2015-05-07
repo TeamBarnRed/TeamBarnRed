@@ -2,9 +2,9 @@
 {
     public interface IField
     {
-        int Column { get; set; }
-        int Row { get; set; }
-        FieldType Type { get; set; }
-        int Value { get; set; }
+        int Column { get; }
+        int Row { get; }
+        FieldType Type { get; }
+        int Value { get; }
     }
 }

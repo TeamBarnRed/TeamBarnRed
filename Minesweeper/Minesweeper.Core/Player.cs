@@ -4,13 +4,12 @@
 
     public class Player : IComparable<Player>
     {
-        private string name;
-        private int score;
+        private string name = "NoName";
+        private int score = 0;
 
-        public Player(string name, int score)
+        public Player(string name)
         {
             this.Name = name;
-            this.Score = score;
         }
 
         public string Name
@@ -57,6 +56,5 @@
         {
             return this.Name + " --> " + this.Score;
         }
-        
     }
 }

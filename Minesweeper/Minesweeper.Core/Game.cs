@@ -1,44 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Minesweeper.Core
+﻿namespace Minesweeper.Core
 {
     public static class Game
     {
-        public const int maxRows = 5;
-        public const int maxColumns = 10;
-        public const int maxMines = 15;
-        public const int maxTopPlayers = 5;
+        public const int TopPlayersCount = 5;
 
-        private static Board board;
-        private static int score;
-        private static List<Player> topPlayers;
+        private static Player[] topPlayers = new Player[TopPlayersCount];
 
-        public static void Run()
+        public static Board Board { get; private set; }
+
+        public delegate void GameOverHandler(GameOverEventArgs args);
+
+        public static event GameOverHandler OnGameOver;
+
+        public static void Start(int rows, int columns, int mines)
         {
-            board = new Board(maxRows, maxColumns, maxMines);
-            score = 0;
+            Board = new Board(rows, columns, mines);
+            Board.OnBoardSolved += () =>
+            {
+                var eventArgs = new GameOverEventArgs(true, Board.OpenedFieldsCount);
+                OnGameOver(eventArgs);
+            };
+            Board.OnSteppedOnMine += (field) =>
+            {
+                var eventArgs = new GameOverEventArgs(false, Board.OpenedFieldsCount);
+                OnGameOver(eventArgs);
+            };
         }
 
-        public static Board Board
+        public static void AddPlayerToScoreBoard(Player player)
         {
-            get
-            {
-                return board;
-            }
 
-            private set
-            {
-                board = value;
-            }
-        }
-
-        public static void OpenField(int row, int column)
-        {
-            board.OpenField(board[row, column]);
         }
 
         /*
