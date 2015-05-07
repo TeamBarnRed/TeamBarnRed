@@ -55,7 +55,10 @@
 
         private static void PrintScoreBoard()
         {
-            throw new NotImplementedException();
+            foreach (var player in Game.TopPlayers)
+            {
+                Console.WriteLine(player);
+            }
         }
 
         private static void ProcessCoordinates(string coordinates)
@@ -91,6 +94,10 @@
             if (args.IsWon)
             {
                 gameException = new ApplicationException("Congratulations! You successfully solved the game!");
+
+                Console.WriteLine("Your name: ");
+                string name = Console.ReadLine();
+                var player = new Player(name, args.Score);
             }
             else
             {

@@ -5,7 +5,7 @@
     /// <summary>
     /// Class hoding the game player
     /// </summary>
-    public class Player : IComparable<Player>
+    public class Player : IComparable<IPlayer>, IPlayer
     {
         private string name = "";
         private int score = 0;
@@ -14,9 +14,10 @@
         /// Player constructor method.
         /// </summary>
         /// <param name="name">The player name.</param>
-        public Player(string name)
+        public Player(string name, int score)
         {
             this.Name = name;
+            this.Score = score;
         }
 
         public string Name
@@ -58,7 +59,7 @@
         /// Compare player to other player by score.
         /// </summary>
         /// <param name="player">Other player object.</param>
-        public int CompareTo(Player other)
+        public int CompareTo(IPlayer other)
         {
             return this.Score.CompareTo(other.Score);
         }

@@ -1,4 +1,6 @@
-﻿namespace Minesweeper.Core
+﻿using System.Collections.Generic;
+
+namespace Minesweeper.Core
 {
     /// <summary>
     /// Static class hoding the game
@@ -7,9 +9,14 @@
     {
         public const int TopPlayersCount = 5;
 
-        private static Player[] topPlayers = new Player[TopPlayersCount];
+        private static List<IPlayer> topPlayers = new List<IPlayer>();
 
         public static Board Board { get; private set; }
+
+        public static IPlayer[] TopPlayers
+        {
+            get { return topPlayers.ToArray(); }
+        }
 
         public delegate void GameOverHandler(GameOverEventArgs args);
 
@@ -36,9 +43,15 @@
             };
         }
 
-        public static void AddPlayerToScoreBoard(Player player)
+        public static void AddPlayerToScoreBoard(IPlayer player)
         {
+            topPlayers.Add(player);
+            topPlayers.Sort();
 
+            if (topPlayers.Count > TopPlayersCount)
+            {
+                topPlayers.RemoveAt(topPlayers.Count - 1);
+            }
         }
     }
 }
