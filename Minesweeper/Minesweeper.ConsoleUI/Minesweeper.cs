@@ -98,6 +98,7 @@
                 Console.WriteLine("Your name: ");
                 string name = Console.ReadLine();
                 var player = new Player(name, args.Score);
+                Game.AddPlayerToScoreBoard(player);
             }
             else
             {
