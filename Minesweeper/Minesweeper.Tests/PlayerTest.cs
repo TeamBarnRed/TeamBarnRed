@@ -12,14 +12,14 @@
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreatePlayerWithEmptyNameTest()
         {
-            Player player = new Player("");
+            Player player = new Player("", 10);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetPlayerEmptyNameTest()
         {
-            Player player = new Player("Pesho");
+            Player player = new Player("Pesho", 10);
             player.Name = "";
         }
 
@@ -27,17 +27,14 @@
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void SetPlayerNegativeScoreTest()
         {
-            Player player = new Player("Pesho");
-            player.Score = -1;
+            Player player = new Player("Pesho", -1);
         }
 
         [TestMethod]
         public void ComparePlayerToAnotherPlayerWithLowerScoreTest()
         {
-            Player player = new Player("Pesho");
-            player.Score = 17;
-            Player player2 = new Player("Pesho");
-            player2.Score = 15;
+            Player player = new Player("Pesho", 17);
+            Player player2 = new Player("Pesho", 15);
 
             int resultOutput = player.CompareTo(player2);
 
@@ -47,10 +44,8 @@
         [TestMethod]
         public void ComparePlayerToAnotherPlayerWithSameScoreTest()
         {
-            Player player = new Player("Pesho");
-            player.Score = 15;
-            Player player2 = new Player("Pesho");
-            player2.Score = 15;
+            Player player = new Player("Pesho", 15);
+            Player player2 = new Player("Pesho", 15);
 
             int resultOutput = player.CompareTo(player2);
 
@@ -60,10 +55,8 @@
         [TestMethod]
         public void ComparePlayerToAnotherPlayerWithHigherScoreTest()
         {
-            Player player = new Player("Pesho");
-            player.Score = 15;
-            Player player2 = new Player("Pesho");
-            player2.Score = 17;
+            Player player = new Player("Pesho", 15);
+            Player player2 = new Player("Pesho", 17);
 
             int resultOutput = player.CompareTo(player2);
 
@@ -73,8 +66,7 @@
         [TestMethod]
         public void PlayerToStringTest()
         {
-            Player player = new Player("Pesho");
-            player.Score = 15;
+            Player player = new Player("Pesho", 15);
 
             string resultOutput = player.ToString();
             string expectedOutput = string.Format("{0} --> {1}", player.Name, player.Score);
